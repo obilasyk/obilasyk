@@ -1,5 +1,5 @@
 #test
-name: OWASP ZAP API
+name: OWASP ZAP API 2
 
 on: [push]
 
