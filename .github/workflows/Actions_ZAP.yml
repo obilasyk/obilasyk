@@ -13,6 +13,7 @@ jobs:
       
       - name: DIR
         run: mkdir -p ./zap
+             ls -la
 
       - name: ZAP Scan
         uses: zaproxy/action-api-scan@v0.1.1
