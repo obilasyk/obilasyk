@@ -22,7 +22,6 @@ jobs:
       - name: OWASP ZAP API Scan
         uses: zaproxy/action-api-scan@v0.2.0
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
           docker_name: 'owasp/zap2docker-stable'
           format: openapi
           target: 'https://www.example.com/openapi.json'
