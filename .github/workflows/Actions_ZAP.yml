@@ -13,8 +13,7 @@ jobs:
 
       - name: ZAP Scan
         uses: zaproxy/action-api-scan@v0.1.1
-        run: | 
-          mkdir -p ./zap
+              mkdir -p ./zap
         with:
           docker_name: 'owasp/zap2docker-stable'
           format: openapi
