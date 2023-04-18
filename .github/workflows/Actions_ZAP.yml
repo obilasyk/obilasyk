@@ -1,14 +1,7 @@
 #test
-name: OWASP ZAP API 2
+name: OWASP ZAP API 3
 
-on: 
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
+on: [push]
 
 jobs:
   zap_scan:
@@ -19,9 +12,10 @@ jobs:
         uses: actions/checkout@v2
 
       - name: ZAP Scan
-        uses: zaproxy/action-baseline@v0.7.0
+        uses: zaproxy/action-api-scan@v0.1.1
         with:
           docker_name: 'owasp/zap2docker-stable'
-          target: 'http://testphp.vulnweb.com/'
+          format: openapi
+          target: 'https://www.example.com/openapi.json'
           rules_file_name: '.zap/rules.tsv'
           cmd_options: '-a'
