@@ -13,7 +13,7 @@ jobs:
       
       - name: DIR
         run: |
-          mkdir -p ./zap
+          mkdir -p ./zap/wrk
           ls -la
 
       - name: ZAP Scan
@@ -22,6 +22,6 @@ jobs:
         with:
           docker_name: 'owasp/zap2docker-stable'
           format: openapi
-          target: 'https://www.example.com/openapi.json'
+          target: './01_TEST_REST_API.postman_collection.json'
           rules_file_name: '.zap/rules.tsv'
           cmd_options: '-a'
