@@ -1,0 +1,29 @@
+{
+	"info": {
+		"_postman_id": "ad63f760-f39e-4aa0-a2ab-c415a3fd1ab8",
+		"name": "01_TEST_REST_API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "New Request",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://testphp.vulnweb.com/",
+					"protocol": "http",
+					"host": [
+						"testphp",
+						"vulnweb",
+						"com"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
