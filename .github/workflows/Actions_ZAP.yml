@@ -20,6 +20,6 @@ jobs:
         with:
           docker_name: 'owasp/zap2docker-stable'
           format: openapi
-          target: 01_TEST_REST_API.postman_collection.json
+          target: '01_TEST_REST_API.postman_collection.json'
           rules_file_name: '.zap/rules.tsv'
           cmd_options: '-a'
