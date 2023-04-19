@@ -13,7 +13,6 @@ jobs:
       
       - name: DIR
         run: |
-          mkdir -p /zap/wrk
           ls -la /zap/wrk
 
       - name: ZAP Scan
