@@ -8,21 +8,20 @@ jobs:
     runs-on: ubuntu-latest
     name: Scan the web application
     steps:
-      - name: Checkout
+      - name: Checkout code
         uses: actions/checkout@v2
       
       - name: DIR
-        run: ls -la
+        run: echo ${pwd}
 
-      - name: ZAP Scan
-        uses: zaproxy/action-api-scan@v0.1.1
-              
-        with:
-          docker_name: 'owasp/zap2docker-stable'
-          format: openapi
-          target: 'TEST_REST_API.yml'
-          rules_file_name: '.zap/rules.tsv'
-      - name: Report
+      - name: Docker Images ZAP Scan
+        run: docker pull owasp/zap2docker-stable 
+      
+      - name: Start Scan
+        run: |
+          sudo docker run -v $(pwd):/zap/wrk/:rw -t owasp/zap2docker-stable zap-api-scan.py -t TEST_REST_API.yml -d -f openapi -r SCAN_REST_API.html 
+    
+      - name: Create Report
         uses: actions/upload-artifact@v1
         with:
-          path: report_json.json
+          path: ./zap/wrk/report_json.json
