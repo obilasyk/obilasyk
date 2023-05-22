@@ -10,18 +10,10 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      
       - name: DIR
         run: echo ${pwd}
-
       - name: Docker Images ZAP Scan
         run: docker pull owasp/zap2docker-stable 
-      
       - name: Start Scan
         run: |
-          sudo docker run -v $(pwd):/zap/wrk/:rw -t owasp/zap2docker-stable zap-api-scan.py -t TEST_REST_API.yml -d -f openapi -r SCAN_REST_API.html 
-    
-      - name: Create Report
-        uses: actions/upload-artifact@v1
-        with:
-          path: ./zap/wrk/report_json.json
+          sudo docker run -v $(pwd):/zap/wrk/:rw -t owasp/zap2docker-stable zap-api-scan.py -t TEST_REST_API.yml -f openapi
