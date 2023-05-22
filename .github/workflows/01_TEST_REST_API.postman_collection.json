@@ -1,0 +1,116 @@
+{
+	"info": {
+		"_postman_id": "ad63f760-f39e-4aa0-a2ab-c415a3fd1ab8",
+		"name": "01_TEST_REST_API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "testphp",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://testphp.vulnweb.com/",
+					"protocol": "http",
+					"host": [
+						"testphp",
+						"vulnweb",
+						"com"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"console.log('Start security check');",
+					"",
+					"//Test status code",
+					"//pm.test(\"Successful GET request\", () => {",
+					"//  pm.expect(pm.response.code).to.be.oneOf([200,401]);",
+					"//});",
+					"",
+					"//Test configured headers",
+					"//Test configured header 'Connection' isn't use keep-alive",
+					"pm.test(\"4.1/Checking that the - 'Connection' header is configured to not use the 'keep-alive' option. Must be 'close' \", () => {",
+					"  pm.expect(pm.response.headers.get('Connection')).to.not.eql('keep-alive');",
+					"  });",
+					"//",
+					"//Remove headers if they use ",
+					"pm.test(\"7.8/Checking for the absence of a 'Vary' header (Remove this header)\", () => {",
+					"    pm.response.to.not.have.header(\"Vary\");",
+					"});",
+					"//Test configured headers",
+					"//Test configured header 'Transfer-Encoding' isn't use chunked",
+					"pm.test(\"8.1.8/Checking that the - 'Transfer-Encoding' header is configured to not use the 'chunked' option\", () => {",
+					"  pm.expect(pm.response.headers.get('Transfer-Encoding')).to.not.eql('chunked');",
+					"  ",
+					"});",
+					"//Test configured header 'Content-Encoding' isn't use gzip",
+					"pm.test(\"8.1.7/Checking that the - 'Content-Encoding' header is configured to not use the 'gzip' option\", () => {",
+					"    pm.expect(pm.response.headers.get('Content-Encoding')).to.not.eql('gzip');",
+					"});",
+					"//Test present headers",
+					"pm.test(\"11.0/Checking for the presence of a 'Strict-Transport-Security' header\", () => {",
+					"  pm.response.to.have.header(\"Strict-Transport-Security\");",
+					"});",
+					"//",
+					"pm.test(\"11.1/Checking for the presence of a 'X-Content-Type-Options' header\", () => {",
+					"  pm.response.to.have.header(\"X-Content-Type-Options\");",
+					"});",
+					"//",
+					"pm.test(\"11.2/Checking for the presence of a 'X-Frame-Options' header\", () => {",
+					"  pm.response.to.have.header(\"X-Frame-Options\");",
+					"});",
+					"//",
+					"pm.test(\"11.3/Checking for the presence of a 'Content-Security-Policy' header\", () => {",
+					"  pm.response.to.have.header(\"Content-Security-Policy\");",
+					"});",
+					"//",
+					"pm.test(\"11.4/Checking for the presence of a 'Content-Type' header\", () => {",
+					"  pm.response.to.have.header(\"Content-Type\");",
+					"});",
+					"//",
+					"pm.test(\"11.5/Checking for the presence of a 'Cache-Control' header\", () => {",
+					"  pm.response.to.have.header(\"Cache-Control\");",
+					"});",
+					"//Remove headers if they use ",
+					"pm.test(\"11.6/Checking for the absence of a ' fingerprinting' header (Remove this header)\", () => {",
+					"    pm.response.to.not.have.header(\" fingerprinting\");",
+					"});",
+					"//",
+					"pm.test(\"11.7/Checking for the absence of a 'X-Powered-By' header (Remove this header)\", () => {",
+					"    pm.response.to.not.have.header(\"X-Powered-By\");",
+					"});",
+					"//",
+					"pm.test(\"11.8/Checking for the absence of a 'Server' header (Remove this header)\", () => {",
+					"    //pm.response.to.not.have.header(\"Server\");",
+					"    pm.expect(pm.response.headers.get('Server')).to.eql('cloudflare');",
+					"});",
+					"//",
+					"pm.test(\"11.9/Checking for the absence of a 'X-AspNet-Version' header (Remove this header)\", () => {",
+					"    pm.response.to.not.have.header(\"X-AspNet-Version\");",
+					"});"
+				]
+			}
+		}
+	]
+}
