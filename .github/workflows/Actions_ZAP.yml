@@ -25,5 +25,4 @@ jobs:
       - name: Report
         uses: actions/upload-artifact@v1
         with:
-          name: zap-report
-          path: report_html.html
+          path: report_json.json
