@@ -50,3 +50,4 @@ jobs:
       - name: Start Scan
         run: |
           sudo docker run -v $(pwd):/zap/wrk/:rw -t owasp/zap2docker-stable zap-api-scan.py -t TEST_REST_API_.yml -f openapi
+          ls -la
