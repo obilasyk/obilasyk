@@ -14,14 +14,17 @@ jobs:
         run: |
           sudo apt update
           sudo apt install nodejs npm -y
+          echo "nodejs --version"
           nodejs --version
-
-          npm install -g newman
-          npm install -g newman-reporter-html
-          npm install -g newman-reporter-htmlextra
-          newman -h
+          echo "----------"  
+          sudo npm install -g newman
           
-          npm i -g postman-to-openapi
+          sudo npm install -g newman-reporter-html
+          sudo npm install -g newman-reporter-htmlextra
+          echo "newman -h"
+          newman -h
+          echo "----------"
+          sudo npm install -g postman-to-openapi
           p2o -h
           
       - name: Docker Images ZAP Scan
