@@ -25,15 +25,21 @@ jobs:
           sudo npm install -g newman-reporter-htmlextra
           echo "newman -v"
           newman -v
+          echo "----------"
+          echo "---Start---"
+          sudo newman run 01_TEST_REST_API.postman_collection.json
        
       - name: Install p2o
         run: |
           sudo npm install -g postman-to-openapi
           echo "p2o -v"
           p2o -v
+          echo "----------"
+          echo "---Start---"
+          p2o ./01_TEST_REST_API.postman_collection.json -f ./TEST_REST_API_.yml
   
       - name: Docker Images ZAP Scan
         run: docker pull owasp/zap2docker-stable 
       - name: Start Scan
         run: |
-          sudo docker run -v $(pwd):/zap/wrk/:rw -t owasp/zap2docker-stable zap-api-scan.py -t TEST_REST_API.yml -f openapi
+          sudo docker run -v $(pwd):/zap/wrk/:rw -t owasp/zap2docker-stable zap-api-scan.py -t TEST_REST_API_.yml -f openapi
