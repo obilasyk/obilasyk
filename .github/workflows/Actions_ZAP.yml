@@ -33,7 +33,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v3
         with:
-          name: report
+          name: report api
           path: ./newman/
        
       - name: Install p2o
@@ -49,5 +49,12 @@ jobs:
         run: docker pull owasp/zap2docker-stable 
       - name: Start Scan
         run: |
-          sudo docker run -v $(pwd):/zap/wrk/:rw -t owasp/zap2docker-stable zap-api-scan.py -t TEST_REST_API_.yml -f openapi
-          ls -la
+          sudo docker run -v $(pwd):/zap/wrk/:rw -t owasp/zap2docker-stable zap-api-scan.py -t TEST_REST_API_.yml -f openapi -r SCAN_REST_API.html || true
+          
+      - name: Upload scan result file
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: report zap
+          path: ./zap/wrk/
+
