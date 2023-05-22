@@ -10,23 +10,28 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: Install Newman
+      - name: Install Node
         run: |
           sudo apt update
           sudo apt install nodejs npm -y
           echo "nodejs --version"
           nodejs --version
-          echo "----------"  
-          sudo npm install -g newman
-          
+          echo "----------"
+      
+      - name: Install Newman
+        run: |
+          sudo npm install -g newman         
           sudo npm install -g newman-reporter-html
           sudo npm install -g newman-reporter-htmlextra
-          echo "newman -h"
-          newman -h
-          echo "----------"
+          echo "newman -v"
+          newman -v
+       
+      - name: Install p2o
+        run: |
           sudo npm install -g postman-to-openapi
-          p2o -h
-          
+          echo "p2o -v"
+          p2o -v
+  
       - name: Docker Images ZAP Scan
         run: docker pull owasp/zap2docker-stable 
       - name: Start Scan
