@@ -10,8 +10,20 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: DIR
-        run: echo ${pwd}
+      - name: Install Newman
+        run: |
+          sudo apt update
+          sudo apt install nodejs npm -y
+          nodejs --version
+
+          npm install -g newman
+          npm install -g newman-reporter-html
+          npm install -g newman-reporter-htmlextra
+          newman -h
+          
+          npm i -g postman-to-openapi
+          p2o -h
+          
       - name: Docker Images ZAP Scan
         run: docker pull owasp/zap2docker-stable 
       - name: Start Scan
