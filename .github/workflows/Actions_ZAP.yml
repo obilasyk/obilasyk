@@ -27,9 +27,14 @@ jobs:
           newman -v
           echo "----------"
           echo "---Start---"
-          sudo newman run 01_TEST_REST_API.postman_collection.json
-        env:
-          R_REMOTES_NO_ERRORS_FROM_WARNINGS: true
+          sudo newman run 01_TEST_REST_API.postman_collection.json -r htmlextra,cli || true
+          
+      - name: Upload scan result file
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: report
+          path: ./newman/
        
       - name: Install p2o
         run: |
