@@ -13,6 +13,7 @@ jobs:
       - name: Install Node
         run: |
           sudo apt update
+          sudo mkdir /zap/wrk/
           sudo apt install nodejs npm -y
           echo "nodejs --version"
           nodejs --version
@@ -49,7 +50,6 @@ jobs:
         run: docker pull owasp/zap2docker-stable 
       - name: Start Scan
         run: |
-          mkdir /zap/wrk
           ls -la
           sudo docker run -v $(pwd):/zap/wrk/:rw -t owasp/zap2docker-stable zap-api-scan.py -t TEST_REST_API_.yml -f openapi -r SCAN_REST_API.html || true
           
