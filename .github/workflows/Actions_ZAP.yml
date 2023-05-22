@@ -28,7 +28,7 @@ jobs:
           echo "----------"
           echo "---Start---"
           sudo newman run 01_TEST_REST_API.postman_collection.json
-          env:
+        env:
           NODE_ENV: Install p2o
        
       - name: Install p2o
