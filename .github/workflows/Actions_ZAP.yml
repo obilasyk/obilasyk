@@ -13,7 +13,6 @@ jobs:
       - name: Install Node
         run: |
           sudo apt update
-          sudo mkdir /zap/wrk/
           sudo apt install nodejs npm -y
           echo "nodejs --version"
           nodejs --version
